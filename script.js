@@ -13,4 +13,13 @@ function multiply(num1,num2){
 function divide(num1,num2){
     let quotient= num1/num2;
     return quotient;}
-    
+
+function operate(num1,num2,operator){
+        operator='+' ? add(num1,num2) 
+        :operator='-' ? subtract(num1,num2)
+        :operator='*' ? multiply(num1,num2)
+        :divide(num1,num2);}
+
+let num1=0;
+let num2=0;
+let operator;
