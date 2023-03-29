@@ -20,6 +20,17 @@ function operate(num1,num2,operator){
         :operator='*' ? multiply(num1,num2)
         :divide(num1,num2);}
 
+const container = document.querySelector('#container');
+container.style.background = "dark blue";
+const displayBox = document.createElement('div'); 
+displayBox.style.background = "light blue";
+const buttonBox = document.createElement('div');
+buttonBox.style.background = "light blue";
+container.appendChild(displayBox);
+container.appendChild(buttonBox);  
+
+//for (i=0;i<20;i++){const button =document.createElement('button');buttonBox.appendChild(button);}
+
 let num1=0;
 let num2=0;
 let operator;
