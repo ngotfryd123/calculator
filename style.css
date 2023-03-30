@@ -30,9 +30,13 @@ div#container {
     align-self: center;
 }
 .display {
-    background: blue;
-    opacity: 0.1;
+    background: #101097;
     border-radius: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 45px;
 }
 body {
     background: lightsalmon;
