@@ -5,7 +5,8 @@ let displayVar="";
 
 function opDisplay(value){
 const display = document.querySelector('#display');
-        display.innerHTML = value;}
+        display.innerHTML = value;
+        displayVar=value;}
 
 function add(a,b){
     let sum = a+b;
@@ -21,7 +22,8 @@ function multiply(a,b){
 
 function divide(a,b){
     let quotient= a/b;
-    return opDisplay(quotient);}
+    if (b===0){return opDisplay("Nope.")}
+    else return opDisplay(quotient);}
 
 function getDisplay(buttonVal){
     if (buttonVal==="c"){
@@ -30,6 +32,14 @@ function getDisplay(buttonVal){
         operator=displayVar;}
 
     if (buttonVal==="+" || buttonVal==="-" || buttonVal ==="/" || buttonVal ==="*"){
+
+        if (displayVar.includes("+")||displayVar.includes("-")||displayVar.includes("/")||displayVar.includes("*")){
+            if (displayVar.includes("-"))num2=parseInt(displayVar.split('-')[1]);
+            else if (displayVar.includes("+"))num2=parseInt(displayVar.split('+')[1]);
+            else if (displayVar.includes("*"))num2=parseInt(displayVar.split('*')[1]);
+            else num2=parseInt(displayVar.split('/')[1]);
+            operate(num1,num2,operator)}
+
         operator=buttonVal;
         num1=parseInt(displayVar);}
 
@@ -37,10 +47,13 @@ function getDisplay(buttonVal){
         if (displayVar.includes("-"))num2=parseInt(displayVar.split('-')[1]);
         else if (displayVar.includes("+"))num2=parseInt(displayVar.split('+')[1]);
         else if (displayVar.includes("*"))num2=parseInt(displayVar.split('*')[1]);
-        else num2=parseInt(displayVar.split('/')[1]);}
+        else num2=parseInt(displayVar.split('/')[1]);
+        operate(num1,num2,operator);
+        num1=displayVar;} 
 
     displayVar+=buttonVal;
-    return changeDisplay(displayVar);}
+   
+    return changeDisplay(buttonVal);}
 
 function operate(a,b,c){
         c==='+' ? add(a,b) 
@@ -50,8 +63,8 @@ function operate(a,b,c){
     
 function changeDisplay(setDisplay){
         const display = document.querySelector('#display');
-        display.innerHTML = setDisplay;
-        if (setDisplay.includes("="))operate(num1,num2,operator);}   
+        if (setDisplay==="+" || setDisplay==="-" || setDisplay ==="/" || setDisplay ==="*"||setDisplay==="="){}
+        else display.innerHTML = setDisplay;} 
 
 const container = document.querySelector('#container');
-container.style.background = "dark blue";
+container.style.background = "#1e1e24";
