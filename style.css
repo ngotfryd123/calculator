@@ -6,7 +6,7 @@ button.equal {
     border-radius: 15px;
 }
 button {
-    background: lightskyblue;
+    background: #141312;
     border-radius: 15%;
     width: 70px;
     color: white;
@@ -30,7 +30,7 @@ div#container {
     align-self: center;
 }
 .display {
-    background: #101097;
+    background: #434350;
     border-radius: 15px;
     color: white;
     display: flex;
@@ -39,7 +39,7 @@ div#container {
     font-size: 45px;
 }
 body {
-    background: lightsalmon;
+    background: #035291;
     display: flex;
     justify-content: center;
     height: 100vh;
