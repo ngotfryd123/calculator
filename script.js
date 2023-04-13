@@ -22,6 +22,7 @@ function multiply(a,b){
 
 function divide(a,b){
     let quotient= a/b;
+    quotient=Math.round((quotient + Number.EPSILON) * 100) / 100;
     if (b===0){return setDisplay("Nope.")}
     else return setDisplay(quotient);}
 
