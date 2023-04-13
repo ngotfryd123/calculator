@@ -1,59 +1,81 @@
-let num1=0;
-let num2=0;
+let num1;
+let num2;
 let operator;
 let displayVar="";
 
-function opDisplay(value){
-const display = document.querySelector('#display');
-        display.innerHTML = value;
-        displayVar=value;}
-
+function setDisplay(value){
+    const display = document.querySelector('#display');
+    display.innerHTML=value;
+    if (num1 !==undefined && num2 !== undefined)displayVar=value;}
+    
 function add(a,b){
     let sum = a+b;
-    return opDisplay(sum);}
+    return setDisplay(sum);}
 
 function subtract(a, b){
     let difference= a-b;
-    return opDisplay(difference);}
+    return setDisplay(difference);}
 
 function multiply(a,b){
     let product= a*b;
-    return opDisplay(product);}
+    return setDisplay(product);}
 
 function divide(a,b){
     let quotient= a/b;
-    if (b===0){return opDisplay("Nope.")}
-    else return opDisplay(quotient);}
+    if (b===0){return setDisplay("Nope.")}
+    else return setDisplay(quotient);}
 
-function getDisplay(buttonVal){
+function getNum(buttonVal){
+   
     if (buttonVal==="c"){
         displayVar="";
         buttonVal=displayVar;
-        operator=displayVar;}
+        operator=undefined;
+        num1=undefined;
+        num2=num1;}
+    
+    if (!buttonVal.includes("+") && !buttonVal.includes("-") && !buttonVal.includes("*") && !buttonVal.includes("/") && !buttonVal.includes("=")){
+        if (num1 === undefined && num2 === undefined){
+            if (displayVar !== undefined && operator !== undefined){
+                displayVar="";
+                operator=displayVar;
+                num1=undefined;
+                num2=num1;}}}
 
-    if (buttonVal==="+" || buttonVal==="-" || buttonVal ==="/" || buttonVal ==="*"){
+    if (buttonVal.includes("+")||buttonVal.includes("-")||buttonVal.includes("*")||buttonVal.includes("/")||buttonVal.includes("=")){/*do nothing*/}
 
-        if (displayVar.includes("+")||displayVar.includes("-")||displayVar.includes("/")||displayVar.includes("*")){
-            if (displayVar.includes("-"))num2=parseInt(displayVar.split('-')[1]);
-            else if (displayVar.includes("+"))num2=parseInt(displayVar.split('+')[1]);
-            else if (displayVar.includes("*"))num2=parseInt(displayVar.split('*')[1]);
-            else num2=parseInt(displayVar.split('/')[1]);
-            operate(num1,num2,operator)}
-
-        operator=buttonVal;
-        num1=parseInt(displayVar);}
-
-    if (buttonVal==="="){
-        if (displayVar.includes("-"))num2=parseInt(displayVar.split('-')[1]);
-        else if (displayVar.includes("+"))num2=parseInt(displayVar.split('+')[1]);
-        else if (displayVar.includes("*"))num2=parseInt(displayVar.split('*')[1]);
-        else num2=parseInt(displayVar.split('/')[1]);
-        operate(num1,num2,operator);
-        num1=displayVar;} 
-
+   else {
     displayVar+=buttonVal;
+    setDisplay(displayVar);}
    
-    return changeDisplay(buttonVal);}
+   if (buttonVal.includes("+")||buttonVal.includes("-")||buttonVal.includes("*")||buttonVal.includes("/")){
+
+    if (num1 !== undefined && num2 === undefined){
+        num2=parseInt(displayVar);
+        let operator2=buttonVal;
+        operate(num1,num2,operator);
+        operator=operator2;
+        num1=displayVar;
+        num2=undefined;
+        displayVar="";}
+
+    else if (num1 !== undefined && num2 !== undefined){
+        if (displayVar !==""){
+        num1=parseInt(displayVar);
+        displayVar="";
+        operator=buttonVal;}}
+
+    else{
+    num1=parseInt(displayVar);
+    displayVar="";
+    operator=buttonVal;}}
+    
+   if (buttonVal==="="){
+    num2=parseInt(displayVar);
+    displayVar="";
+    operate(num1,num2,operator);
+    num1=undefined;
+    num2=undefined;}}
 
 function operate(a,b,c){
         c==='+' ? add(a,b) 
@@ -61,10 +83,5 @@ function operate(a,b,c){
         :c==='*' ? multiply(a,b)
         :divide(a,b);}
     
-function changeDisplay(setDisplay){
-        const display = document.querySelector('#display');
-        if (setDisplay==="+" || setDisplay==="-" || setDisplay ==="/" || setDisplay ==="*"||setDisplay==="="){}
-        else display.innerHTML = setDisplay;} 
-
 const container = document.querySelector('#container');
 container.style.background = "#1e1e24";
